@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback } from "react";
 import _ from "lodash";
-////////////////////////////////////
+
 import FormFieldReducer from "./FormFieldsReducer";
 const useFormGear = Formfields => {
   const [fields, dispatch] = useReducer(
@@ -17,7 +17,7 @@ const useFormGear = Formfields => {
       }
     });
   }, []);
-  
+
   const handleSubmit = useCallback(e => {
     dispatch({
       type: "FormSubmit"

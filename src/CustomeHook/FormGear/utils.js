@@ -87,7 +87,6 @@ const FieldValidator = field => {
   let result = true;
   let caughtErrorValidationIndex = 0;
   _.forIn(field.constraints, (constraint, key) => {
-    console.log(!FormValidation[key](field.value));
     if (!FormValidation[key](field.value)) {
       result = false;
       caughtErrorValidationIndex = key;
@@ -95,8 +94,7 @@ const FieldValidator = field => {
     }
     return true;
   });
-  console.log(caughtErrorValidationIndex);
-  return { isValid: !result, caughtErrorValidationIndex };
+  return { isValid: result, caughtErrorValidationIndex };
 };
 
 const checkFormValid = fields => {

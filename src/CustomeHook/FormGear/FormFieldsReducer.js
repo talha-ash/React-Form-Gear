@@ -1,10 +1,12 @@
 import { FieldValidator, checkFormValid } from "./utils";
 
 const checkResult = (result, state, name) => {
-  if (result.isValid) {
+  if (!result.isValid) {
     state[name].currentMessage =
       state[name].constraints[result.caughtErrorValidationIndex].errorMessage;
-    state[name].error = result.isValid;
+    state[name].error = true;
+  } else {
+    state[name].error = false;
   }
 };
 

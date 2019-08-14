@@ -12,6 +12,7 @@ import _ from "lodash";
 import useFormGear from "../CustomeHook/FormGear/FormGear";
 const Home = props => {
   const { handleChange, handleSubmit, fields } = useFormGear(props.fields);
+  console.log(fields);
   return (
     <div className="container">
       <div className="form-box">

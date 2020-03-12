@@ -1,4 +1,7 @@
-import { FieldValidator, checkFormValid } from "./utils";
+import {
+  validateField as FieldValidator,
+  validateFields as checkFormValid
+} from "./Validation";
 
 const checkResult = (result, state, name) => {
   if (!result.isValid) {
@@ -12,9 +15,10 @@ const checkResult = (result, state, name) => {
 
 const fieldChanger = (state, { name, value }) => {
   state[name].value = value;
-  let result = FieldValidator(state[name]);
-  checkResult(result, state, name);
-  return { ...state };
+  console.log(state);
+  let result = FieldValidator(state[name], value);
+  //checkResult(result, state, name);
+  return { ...state, [name]: result };
 };
 
 const FormFieldReducer = (state, action) => {
@@ -23,6 +27,9 @@ const FormFieldReducer = (state, action) => {
       return fieldChanger(state, action.payload);
     case "FormSubmit":
       const { isValid, fields } = checkFormValid(state);
+      if (isValid) {
+        action.afterSubmit();
+      }
       return { ...fields };
     default:
       throw new Error("Unexpected action");

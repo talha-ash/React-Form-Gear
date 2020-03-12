@@ -1,13 +1,8 @@
 import React, { useReducer, useCallback } from "react";
-import _ from "lodash";
-
-import FormFieldReducer from "./FormFieldsReducer";
-const useFormGear = Formfields => {
-  const [fields, dispatch] = useReducer(
-    FormFieldReducer,
-    _.cloneDeep(Formfields)
-  );
-
+import FormReducer from "./formReducer";
+const useFormGear = ({ formFields, afterSubmit }) => {
+  const [fields, dispatch] = useReducer(FormReducer, formFields);
+  console.log(afterSubmit);
   const handleChange = useCallback(e => {
     dispatch({
       type: "FieldChange",
@@ -20,7 +15,8 @@ const useFormGear = Formfields => {
 
   const handleSubmit = useCallback(e => {
     dispatch({
-      type: "FormSubmit"
+      type: "FormSubmit",
+      afterSubmit
     });
   }, []);
 

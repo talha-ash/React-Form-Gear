@@ -1,27 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-form-gear
 
-## React Form Gear
+> Simple hook for handling form in simple way (alpha)
 
-In the project directory, you can run:
+[![NPM](https://img.shields.io/npm/v/use-interval.svg)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-### `npm install`
+## Install
 
-then
+```bash
+npm install --save react-form-gear
+yarn add react-form-gear
+```
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#define your modal with same structure
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```tsx
+const LoginFormState = {
+  email: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+    constraints: [
+      { type: "required", message: "Email is Required" },
+      { type: "email", message: "email incorrect" }
+    ]
+  },
+  password: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+    constraints: [
+      { type: "required", message: "Password is Required" },
+      {
+        type: "minLength",
+        data: { min: 8 },
+        message: "password must be 8 charactor"
+      }
+    ]
+  }
+};
+```
 
-### `npm test`
+```tsx
+import React from "react";
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+import useformGear from "react-form-gear";
 
-### `npm run build`
+const Example = () => {
+  const { handleChange, handleSubmit, fields } = useformGear({
+    formFields: LoginFormState,
+    afterSubmit: () => {
+      //do after submit valid form
+    }
+  });
+  return (
+    <div>
+      <h1>React Form Gear</h1>
+      <input
+        placeholder="email"
+        value={fields.email.value}
+        onChange={handleChange}
+        name={"email"}
+      />
+      {fields.email.isValid ? null : fields.email.message}
+      <input
+        placeholder="password"
+        value={fields.password.value}
+        onChange={handleChange} //must
+        name={"password"} //must
+      />
+      {fields.password.isValid ? null : fields.password.message}
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+};
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#its initial alpha version. Stable verison comes with more feature
+

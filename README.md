@@ -38,6 +38,22 @@ const LoginFormState = {
         message: "password must be 8 charactor"
       }
     ]
+  },
+  //Dynamic Function Validation
+  fourDigit: {
+    ...formInitialField,
+    constraints: [
+      { type: "required", message: "FourDigit is Required" },
+      {
+        type: "onlyFourDigit",
+        message: "only four digit",
+        validateFunction: {
+          onlyFourDigit: value => {
+            return value.length == 4 ? true : false;
+          }
+        }
+      }
+    ]
   }
 };
 ```
@@ -78,4 +94,3 @@ const Example = () => {
 ```
 
 #its initial alpha version. Stable verison comes with more feature
-

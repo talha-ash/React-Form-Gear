@@ -9,13 +9,51 @@ function minLength(value, data) {
   return value.length >= data.min ? true : false;
 }
 
-export const validate = (type, value, data) => {
+function validateletters(value) {
+  let re = /^[A-Za-z ]+$/;
+  return re.test(value);
+}
+
+function validateUsername(value) {
+  let usernameRex = /^[a-zA-Z0-9_][a-zA-Z]+[0-9]+$/;
+  if (usernameRex.test(value)) {
+    return true;
+  }
+  return false;
+}
+
+// function that verifies if value contains only numbers
+function validateNumber(value) {
+  let numberRex = new RegExp("^[0-9]+$");
+  if (numberRex.test(value)) {
+    return true;
+  }
+  return false;
+}
+
+// verifies if value is a valid URL
+
+function validateUrl(value) {
+  try {
+    new URL(value);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+export const validate = (value, constraint) => {
   const validator = {
     required: requiredValidation,
     email: emailValidation,
     minLength: minLength
   };
-  return validator[type](value, data);
+  if (validator[constraint.type]) {
+    return validator[constraint.type](value, constraint?.data);
+  }
+  if (constraint.validateFunction) {
+    return constraint.validateFunction[constraint.type](value, constraint);
+  }
 };
 
 export const validateField = (field, value) => {
@@ -23,7 +61,7 @@ export const validateField = (field, value) => {
   let isValidForm = [];
   let trueConstraint = true;
   field.constraints.map(constraint => {
-    let result = validate(constraint.type, value, constraint?.data);
+    let result = validate(value, constraint);
     if (result && trueConstraint) {
       isValidForm.push(true);
       newField = {

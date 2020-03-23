@@ -38,6 +38,22 @@ const LoginFormState = {
         message: "password must be 8 charactor"
       }
     ]
+  },
+  //Dynamic Function Validation
+  fourDigit: {
+    ...formInitialField,
+    constraints: [
+      { type: "required", message: "FourDigit is Required" },
+      {
+        type: "onlyFourDigit",
+        message: "only four digit",
+        validateFunction: {
+          onlyFourDigit: value => {
+            return value.length == 4 ? true : false;
+          }
+        }
+      }
+    ]
   }
 };
 ```
@@ -76,6 +92,8 @@ const Example = () => {
   );
 };
 ```
-
+```
+test drive https://codesandbox.io/s/react-form-gear-1p0z9
+```
+#You can use it for simple use case as mention above
 #its initial alpha version. Stable verison comes with more feature
-

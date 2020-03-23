@@ -1,6 +1,6 @@
 // import React from "react";
 // import ReactDom from "react-dom";
-import useformGear from "./customeHook/formGear";
+ import useformGear from "./customeHook/formGear";
 
 // const formInitialField = {
 //   value: "",
@@ -24,6 +24,21 @@ import useformGear from "./customeHook/formGear";
 //         type: "minLength",
 //         data: { min: 8 },
 //         message: "password must be 8 charactor"
+//       }
+//     ]
+//   },
+//   fourDigit: {
+//     ...formInitialField,
+//     constraints: [
+//       { type: "required", message: "FourDigit is Required" },
+//       {
+//         type: "onlyFourDigit",
+//         message: "only four digit",
+//         validateFunction: {
+//           onlyFourDigit: value => {
+//             return value.length == 4 ? true : false;
+//           }
+//         }
 //       }
 //     ]
 //   }
@@ -54,8 +69,14 @@ import useformGear from "./customeHook/formGear";
 //         onChange={handleChange}
 //         name={"password"}
 //       />
-//       {fields.password.isValid ? null : "Password"}
-
+//       {fields.password.isValid ? null : fields.password.errorMessage}
+//       <input
+//         placeholder="four digit"
+//         value={fields.fourDigit.value}
+//         onChange={handleChange}
+//         name={"fourDigit"}
+//       />
+//       {fields.fourDigit.isValid ? null : fields.fourDigit.errorMessage}
 //       <button onClick={handleSubmit}>Submit</button>
 //     </div>
 //   );

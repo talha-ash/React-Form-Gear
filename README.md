@@ -13,7 +13,7 @@ yarn add react-form-gear
 
 ## Usage
 
-#define your modal with same structure
+#define your model with same structure
 
 ```tsx
 const LoginFormState = {

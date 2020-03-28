@@ -95,5 +95,5 @@ const Example = () => {
 ```
 test drive https://codesandbox.io/s/react-form-gear-1p0z9
 ```
-#You can use it for simple use case as mention above
-#its initial alpha version. Stable verison comes with more feature
+
+#Suggestions and improve do pull request

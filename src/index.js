@@ -2,7 +2,14 @@
 // import ReactDom from "react-dom";
  import useformGear from "./customeHook/formGear";
 
-// const formInitialField = {
+/*
+
+
+only for testing purpose  thats why comment
+not include in npm package
+
+*/ 
+ // const formInitialField = {
 //   value: "",
 //   isValid: true,
 //   errorMessage: ""
@@ -83,4 +90,5 @@
 // };
 
 // ReactDom.render(<App />, document.getElementById("app"));
+
 export default useformGear;

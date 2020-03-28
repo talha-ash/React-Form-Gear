@@ -56,6 +56,7 @@ export const validate = (value, constraint) => {
   }
 };
 
+//need improvement like further divied
 export const validateField = (field, value) => {
   let newField = {};
   let isValidForm = [];
@@ -90,8 +91,8 @@ export const validateField = (field, value) => {
   return newField;
 };
 
+//need improvement like further divied
 export const validateFields = fields => {
-  //let fields = this.state.fields;
   let newFields = {};
   let isValidForm = [];
   Object.keys(fields).map(key => {

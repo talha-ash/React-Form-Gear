@@ -2,7 +2,6 @@ import React, { useReducer, useCallback } from "react";
 import FormReducer from "./formReducer";
 const useFormGear = ({ formFields, afterSubmit }) => {
   const [fields, dispatch] = useReducer(FormReducer, formFields);
-  console.log(afterSubmit);
   const handleChange = useCallback(e => {
     dispatch({
       type: "FieldChange",

@@ -115,8 +115,9 @@ test drive https://codesandbox.io/s/react-form-gear-1p0z9
 
 more will be add
 
-> dynamic function validation
-function should return only true or false 
+> You can add your own validation using dynamic function validation <+>
+> function should return only true or false
+
 ```tsx
  fourDigit: {
     value: "",
@@ -127,7 +128,7 @@ function should return only true or false
       {
         type: "onlyFourDigit",
         message: "only four digit",
-        validateFunction: {
+        validateFunction: {//<+>
           onlyFourDigit: value => {
             return value.length == 4 ? true : false;
           }

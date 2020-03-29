@@ -103,14 +103,38 @@ test drive https://codesandbox.io/s/react-form-gear-1p0z9
 
 ## Constraints Types Available
 
-> required
-> email
-> minLength
-> typeUrl
-> typeNumber
-> typeLetter
-> username
--> more will be add
--> You can also use dynamic function validation
+| Types      |
+| :--------- |
+| required   |
+| email      |
+| minLength  |
+| typeUrl    |
+| typeNumber |
+| typeLetter |
+| username   |
+
+more will be add
+
+> dynamic function validation
+
+```tsx
+ fourDigit: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+    constraints: [
+      { type: "required", message: "FourDigit is Required" },
+      {
+        type: "onlyFourDigit",
+        message: "only four digit",
+        validateFunction: {
+          onlyFourDigit: value => {
+            return value.length == 4 ? true : false;
+          }
+        }
+      }
+    ]
+  }
+```
 
 #Any Suggestions and improvement will be welcome

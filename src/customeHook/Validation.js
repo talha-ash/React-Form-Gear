@@ -47,9 +47,9 @@ export const validate = (value, constraint) => {
     required: requiredValidation,
     email: emailValidation,
     minLength: minLength,
-    typeUrl: validateUrl,
-    typeNumber: validateNumber,
-    typeLetter: validateletters,
+    url: validateUrl,
+    numbers: validateNumber,
+    letters: validateletters,
     username: validateUsername
   };
   if (validator[constraint.type]) {

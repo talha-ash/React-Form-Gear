@@ -103,20 +103,20 @@ test drive https://codesandbox.io/s/react-form-gear-1p0z9
 
 ## Constraints Types Available
 
-| Types      |
-| :--------- |
-| required   |
-| email      |
-| minLength  |
-| typeUrl    |
-| typeNumber |
-| typeLetter |
-| username   |
+| Types     |
+| :-------- |
+| required  |
+| email     |
+| minLength |
+| url       |
+| numbers   |
+| letters   |
+| username  |
 
 more will be add
 
 > dynamic function validation
-
+function should return only true or false 
 ```tsx
  fourDigit: {
     value: "",

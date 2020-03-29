@@ -1,8 +1,10 @@
 # react-form-gear
 
-> Simple hook for handling form in simple way (alpha)
+> Simple hook for handling form in simple way 
 
 [![NPM](https://img.shields.io/npm/v/use-interval.svg)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+> react 16.13 or higher
 
 ## Install
 
@@ -13,7 +15,7 @@ yarn add react-form-gear
 
 ## Usage
 
-#define your modal with same structure
+#define your model with same structure
 
 ```tsx
 const LoginFormState = {
@@ -41,7 +43,9 @@ const LoginFormState = {
   },
   //Dynamic Function Validation
   fourDigit: {
-    ...formInitialField,
+    value: "",
+    isValid: true,
+    errorMessage: "",
     constraints: [
       { type: "required", message: "FourDigit is Required" },
       {
@@ -92,8 +96,9 @@ const Example = () => {
   );
 };
 ```
+
 ```
 test drive https://codesandbox.io/s/react-form-gear-1p0z9
 ```
 
-#Suggestions and improve do pull request
+#Any Suggestions and improvement will be welcome

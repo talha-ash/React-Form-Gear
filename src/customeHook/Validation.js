@@ -46,7 +46,11 @@ export const validate = (value, constraint) => {
   const validator = {
     required: requiredValidation,
     email: emailValidation,
-    minLength: minLength
+    minLength: minLength,
+    typeUrl: validateUrl,
+    typeNumber: validateNumber,
+    typeLetter: validateletters,
+    username: validateUsername
   };
   if (validator[constraint.type]) {
     return validator[constraint.type](value, constraint?.data);

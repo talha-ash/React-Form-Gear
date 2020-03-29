@@ -1,6 +1,6 @@
 # react-form-gear
 
-> Simple hook for handling form in simple way 
+> Simple hook for handling form in simple way
 
 [![NPM](https://img.shields.io/npm/v/use-interval.svg)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -100,5 +100,17 @@ const Example = () => {
 ```
 test drive https://codesandbox.io/s/react-form-gear-1p0z9
 ```
+
+## Constraints Types Available
+
+> required
+> email
+> minLength
+> typeUrl
+> typeNumber
+> typeLetter
+> username
+-> more will be add
+-> You can also use dynamic function validation
 
 #Any Suggestions and improvement will be welcome

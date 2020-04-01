@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import { useReducer, useCallback } from "react";
 import FormReducer from "./formReducer";
 const useFormGear = ({ formFields, afterSubmit }) => {
   const [fields, dispatch] = useReducer(FormReducer, formFields);

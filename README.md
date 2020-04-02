@@ -5,6 +5,7 @@
 [![NPM](https://img.shields.io/npm/v/react-form-gear)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > react 16.13 or higher
+> Version 2 is Stable one update to version 2
 
 ## Install
 
@@ -68,9 +69,16 @@ import React from "react";
 import useformGear from "react-form-gear";
 
 const Example = () => {
-  const { handleChange, handleSubmit, fields } = useformGear({
+  const {
+    handleChange,
+    handleSubmit,
+    fields,
+    isValidForm,
+    isSubmitting
+  } = useformGear({
     formFields: LoginFormState,
-    afterSubmit: () => {
+    afterSubmit: isValid => {
+      //Get is form Valid
       //do after submit valid form
     }
   });

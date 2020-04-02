@@ -3,7 +3,8 @@ function requiredValidation(value) {
 }
 
 function emailValidation(value) {
-  return value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+  const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return emailReg.test(value);
 }
 function minLength(value, data) {
   return value.length >= data.min ? true : false;
@@ -61,17 +62,17 @@ export const validate = (value, constraint) => {
 };
 
 //need improvement like further divied
-export const validateField = (field, value) => {
+export const validateField = field => {
   let newField = {};
   let isValidForm = [];
   let trueConstraint = true;
   field.constraints.map(constraint => {
-    let result = validate(value, constraint);
+    let result = validate(field.value, constraint);
     if (result && trueConstraint) {
       isValidForm.push(true);
       newField = {
         ...field,
-        value: value,
+        //value: value,
         isValid: true,
         errorMessage: ""
       };
@@ -80,7 +81,7 @@ export const validateField = (field, value) => {
       trueConstraint = false;
       newField = {
         ...field,
-        value: value,
+        //value: value,
         isValid: false,
         errorMessage: constraint.message
       };
@@ -88,7 +89,7 @@ export const validateField = (field, value) => {
   });
   if (field.constraints.length <= 0) {
     newField = {
-      value: value,
+      //value: value,
       ...field
     };
   }
@@ -102,12 +103,7 @@ export const validateFields = fields => {
   Object.keys(fields).map(key => {
     let trueConstraint = true;
     fields[key].constraints.map(constraint => {
-      let result = validate(
-        constraint.type,
-        fields[key].value,
-        constraint?.data
-      );
-
+      let result = validate(fields[key].value, constraint);
       if (result && trueConstraint) {
         isValidForm.push(true);
         newFields[key] = {
@@ -132,7 +128,6 @@ export const validateFields = fields => {
       };
     }
   });
-
   return {
     isValid: isValidForm.includes(false) ? false : true,
     fields: newFields

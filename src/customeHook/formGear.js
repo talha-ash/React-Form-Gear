@@ -34,9 +34,7 @@ const useFormGear = ({ formFields, afterSubmit }) => {
       fields,
       isValid: isValid
     });
-    if (isValid) {
-      afterSubmit(isValid);
-    }
+    afterSubmit(isValid);
   };
 
   return {

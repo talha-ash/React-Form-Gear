@@ -5,7 +5,6 @@
 [![NPM](https://img.shields.io/npm/v/react-form-gear)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > react 16.13 or higher
-> Version 2 is Stable one update to version 2
 
 ## Install
 
@@ -13,7 +12,7 @@
 npm install --save react-form-gear
 yarn add react-form-gear
 ```
-
+> Version 2 is Stable one update to version 2
 ## Usage
 
 #define your model with same structure
@@ -80,6 +79,11 @@ const Example = () => {
     afterSubmit: isValid => {
       //Get is form Valid
       //do after submit valid form
+      if(isValid){
+        alert("Form Submit")
+      }else{
+        alert("Not Valid")
+      }
     }
   });
   return (

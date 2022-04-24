@@ -12,7 +12,7 @@
 npm install --save react-form-gear
 yarn add react-form-gear
 ```
-> Version 2 is Stable one update to version 2
+
 ## Usage
 
 #define your model with same structure
@@ -151,7 +151,7 @@ more will be add
 ```
 
 
-## Road Map
+> Road Map
 
 # Typescript Support
 
@@ -159,4 +159,4 @@ more will be add
 
 # Minor Tweaks
 
-# Any Suggestions and improvement are welcome
+> Any Suggestions and improvement are welcome

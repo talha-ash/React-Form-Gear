@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/react-form-gear)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-> react 16.13 or higher
+> react 17.0 or higher
 
 ## Install
 
@@ -25,8 +25,8 @@ const LoginFormState = {
     errorMessage: "",
     constraints: [
       { type: "required", message: "Email is Required" },
-      { type: "email", message: "email incorrect" }
-    ]
+      { type: "email", message: "email incorrect" },
+    ],
   },
   password: {
     value: "",
@@ -37,28 +37,28 @@ const LoginFormState = {
       {
         type: "minLength",
         data: { min: 8 },
-        message: "password must be 8 charactor"
-      }
-    ]
+        message: "password must be 8 charactor",
+      },
+    ],
   },
   //Dynamic Function Validation
-  fourDigit: {
+  zipCode: {
     value: "",
     isValid: true,
     errorMessage: "",
     constraints: [
-      { type: "required", message: "FourDigit is Required" },
+      { type: "required", message: "zipCode is Required" },
       {
         type: "onlyFourDigit",
-        message: "only four digit",
+        message: "Must four digit",
         validateFunction: {
-          onlyFourDigit: value => {
-            return value.length == 4 ? true : false;
-          }
-        }
-      }
-    ]
-  }
+          onlyFourDigit: (value) => {
+            return value.length === 4 ? true : false;
+          },
+        },
+      },
+    ],
+  },
 };
 ```
 
@@ -67,25 +67,22 @@ import React from "react";
 
 import useformGear from "react-form-gear";
 
-const Example = () => {
-  const {
-    handleChange,
-    handleSubmit,
-    fields,
-    isValidForm,
-    isSubmitting
-  } = useformGear({
-    formFields: LoginFormState,
-    afterSubmit: isValid => {
-      //Get is form Valid
-      //do after submit valid form
-      if(isValid){
-        alert("Form Submit")
-      }else{
-        alert("Not Valid")
-      }
-    }
-  });
+function App() {
+  const { handleChange, handleSubmit, fields, isValidForm, isSubmitting } =
+    useformGear({
+      formFields: LoginFormState, //use Your Model
+      //immediateError: true, --show Error as user start write input
+      afterSubmit: (isValid) => {
+        //Get is form Valid
+        //do after submit valid form
+        if (isValid) {
+          alert("Form Submit");
+        } else {
+          alert("Not Valid");
+        }
+      },
+    });
+
   return (
     <div>
       <h1>React Form Gear</h1>
@@ -95,18 +92,25 @@ const Example = () => {
         onChange={handleChange}
         name={"email"}
       />
-      {fields.email.isValid ? null : fields.email.message}
+      {fields.email.isValid ? null : <h1>{fields.email.errorMessage}</h1>}
       <input
         placeholder="password"
         value={fields.password.value}
         onChange={handleChange} //must
         name={"password"} //must
       />
-      {fields.password.isValid ? null : fields.password.message}
+      {fields.password.isValid ? null : <h1>{fields.password.errorMessage}</h1>}
+      <input
+        placeholder="Zip Code"
+        value={fields.zipCode.value}
+        onChange={handleChange} //must
+        name={"zipCode"} //must
+      />
+      {fields.zipCode.isValid ? null : <h1>{fields.zipCode.errorMessage}</h1>}
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
-};
+}
 ```
 
 ```
@@ -150,13 +154,12 @@ more will be add
   }
 ```
 
-
 > Road Map
 
-# Typescript Support
+Typescript Support
 
-# Yup validator Support
+Yup validator Support
 
-# Minor Tweaks
+ Minor Tweaks
 
 > Any Suggestions and improvement are welcome

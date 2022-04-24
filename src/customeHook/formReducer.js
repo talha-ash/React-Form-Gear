@@ -8,9 +8,10 @@ const FormFieldReducer = (state, action) => {
     case "IsSubmitting":
       return {
         ...state,
+        showError: true,
         isSubmitting: action.isSubmitting
           ? action.isSubmitting
-          : !state.isSubmitting
+          : !state.isSubmitting,
       };
     default:
       throw new Error("Unexpected action");

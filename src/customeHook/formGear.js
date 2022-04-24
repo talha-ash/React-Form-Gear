@@ -2,37 +2,45 @@ import React from "react";
 import FormReducer from "./formReducer";
 import {
   validateField as FieldValidator,
-  validateFields as checkFormValid
+  validateFields as checkFormValid,
 } from "./Validation";
 
-const useFormGear = ({ formFields, afterSubmit }) => {
+const useFormGear = ({ formFields, afterSubmit, immediateError = false }) => {
   const [state, dispatch] = React.useReducer(FormReducer, {
     fields: { ...formFields },
     isValid: true,
-    isSubmitting: false
+    isSubmitting: false,
+    showError: immediateError,
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     state.fields[name].value = value;
-    let result = FieldValidator(state.fields[name]);
-    dispatch({
-      type: "FieldChange",
-      fields: { ...state.fields, [name]: result }
-    });
+    if (state.showError) {
+      let result = FieldValidator(state.fields[name]);
+      dispatch({
+        type: "FieldChange",
+        fields: { ...state.fields, [name]: result },
+      });
+    } else {
+      dispatch({
+        type: "FieldChange",
+        fields: { ...state.fields, [name]: state.fields[name] },
+      });
+    }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({
       type: "IsSubmitting",
-      isSubmitting: true
+      isSubmitting: true,
     });
     const { isValid, fields } = checkFormValid(state.fields);
     dispatch({
       type: "FormSubmit",
       fields,
-      isValid: isValid
+      isValid: isValid,
     });
     afterSubmit(isValid);
   };
@@ -42,7 +50,7 @@ const useFormGear = ({ formFields, afterSubmit }) => {
     handleSubmit: handleSubmit,
     fields: state.fields,
     isValidForm: state.isValid,
-    isSubmitting: state.isSubmitting
+    isSubmitting: state.isSubmitting,
   };
 };
 

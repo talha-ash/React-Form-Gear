@@ -151,3 +151,7 @@ more will be add
 ```
 
 #Any Suggestions and improvement are welcome
+##Road Map
+#Typescript Support
+#Yup validator Support
+#Minor Tweaks

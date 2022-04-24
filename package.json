@@ -1,6 +1,6 @@
 {
   "name": "react-form-gear",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Simple React Form Validator",
   "main": "./dist/main.js",
   "author": "xoron",

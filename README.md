@@ -123,7 +123,8 @@ Now fields have fully types
 
 >Type of fields from above example is 
 
-`ts
+
+```ts
   const fields: {
     email: {
         value: string;
@@ -146,18 +147,19 @@ Now fields have fully types
     };
 } & FormFields
 
-`
+```
+
 > We can infer for you if we can 
 
-`tsx 
+```tsx 
   useformGear(...)
-`
+```
 
 > You can provide generic as args 
 
-`tsx 
+```tsx 
   useformGear<typeof LoginFormState>
-`
+```
 
 ## Constraints Types Available
 

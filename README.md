@@ -118,9 +118,11 @@ test drive https://codesandbox.io/s/react-form-gear-demo-qr9gu6
 ```
 ## With Types
 Infer type from given model(But need to follow model structure strictly)
+
 Now fields have fully types
 
 >Type of fields from above example is 
+
 `ts
   const fields: {
     email: {
@@ -146,11 +148,13 @@ Now fields have fully types
 
 `
 > We can infer for you if we can 
+
 `tsx 
   useformGear(...)
 `
 
 > You can provide generic as args 
+
 `tsx 
   useformGear<typeof LoginFormState>
 `

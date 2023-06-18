@@ -1,6 +1,6 @@
 {
   "name": "react-form-gear",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Simple React Form Validator",
   "main": "./dist/react-form-gear.umd.js",
   "module": "./dist/react-form-gear.mjs",
@@ -22,35 +22,24 @@
     "url": "https://github.com/XoronEdge/React-Form-Gear"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "@vitejs/plugin-react": "^4.0.0",
-    "babel-loader": "^8.2.5",
-    "html-loader": "^3.1.0",
-    "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.3",
     "vite": "^4.3.9",
     "vite-plugin-dts": "^2.3.0",
-    "vite-plugin-external": "^1.2.8",
-    "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "vite-plugin-external": "^1.2.8"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve --open --mode development",
-    "vite-start": "vite",
-    "vite-build": "vite build",
-    "vite-serve": "vite preview"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",

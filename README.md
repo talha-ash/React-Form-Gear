@@ -1,10 +1,10 @@
 # react-form-gear
 
-> Simple hook for handling form in simple way
+> Simple hook for handling form in simple way fully typed
 
 [![NPM](https://img.shields.io/npm/v/react-form-gear)](https://www.npmjs.com/package/react-form-gear) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-> react 17.0 or higher
+> react 18.0 or higher
 
 ## Install
 
@@ -116,6 +116,44 @@ function App() {
 ```
 test drive https://codesandbox.io/s/react-form-gear-demo-qr9gu6
 ```
+## With Types
+Infer type from given model(But need to follow model structure strictly)
+Now fields have fully types
+
+>Type of fields from above example is 
+`ts
+  const fields: {
+    email: {
+        value: string;
+        isValid: boolean;
+        errorMessage: string;
+        constraints: {
+            type: string;
+            message: string;
+        }[];
+    };
+    password: {
+        value: string;
+        isValid: boolean;
+        errorMessage: string;
+        constraints: ({
+            ...;
+        } | {
+            ...;
+        })[];
+    };
+} & FormFields
+
+`
+> We can infer for you if we can 
+`tsx 
+  useformGear(...)
+`
+
+> You can provide generic as args 
+`tsx 
+  useformGear<typeof LoginFormState>
+`
 
 ## Constraints Types Available
 
@@ -156,10 +194,10 @@ more will be add
 
 > Road Map
 
-Typescript Support
+Typescript Support(Partial Done)
 
-Yup validator Support
+Yup & Zod validator Support
 
- Minor Tweaks
+Minor Tweaks
 
 > Any Suggestions and improvement are welcome

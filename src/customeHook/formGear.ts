@@ -1,19 +1,46 @@
 import React from "react";
-import FormReducer from "./formReducer";
-import {
-  validateField as FieldValidator,
-  validateFields as checkFormValid,
-} from "./Validation";
+import FormReducer, { FormState, ReducerAction } from "./formReducer";
+import { validateField as FieldValidator, validateFields as checkFormValid } from "./Validation";
+import { FormFields } from "./types";
 
-const useFormGear = ({ formFields, afterSubmit, immediateError = false }) => {
-  const [state, dispatch] = React.useReducer(FormReducer, {
+type UseReducerGeneric<T> = (
+  state: FormState,
+  action: ReducerAction
+) => {
+  fields: T & FormFields;
+  isValid: boolean;
+  isSubmitting: boolean;
+  showError: boolean;
+};
+
+const useFormGear = <T>({
+  formFields,
+  afterSubmit,
+  immediateError = false,
+}: {
+  formFields: T & FormFields;
+  afterSubmit: (value: boolean) => void;
+  immediateError?: boolean;
+}): {
+  handleChange: (e: {
+    target: {
+      name: string;
+      value: string;
+    };
+  }) => void;
+  handleSubmit: (e: { preventDefault: () => void }) => void;
+  fields: T & FormFields;
+  isValidForm: boolean;
+  isSubmitting: boolean;
+} => {
+  const [state, dispatch] = React.useReducer<UseReducerGeneric<T>>(FormReducer, {
     fields: { ...formFields },
     isValid: true,
     isSubmitting: false,
     showError: immediateError,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     state.fields[name].value = value;
     if (state.showError) {
@@ -30,7 +57,7 @@ const useFormGear = ({ formFields, afterSubmit, immediateError = false }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     dispatch({
       type: "IsSubmitting",
